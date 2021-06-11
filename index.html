@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>First Vue Project</title>
+</head>
+
+<body>
+    <div id="app" class="container">
+        <div class="row justify-content-center">
+            <div class="col-5">
+                <h4 class="text-center my-5">Cart Items</h4>
+                <form @submit.prevent="addItem">
+                    <div class="mb-3">
+                        <input v-model="newItem" type="text" class="form-control">
+                    </div>
+                </form>
+                <ul class="list-group">
+                    <li v-for="(item, index) in items" :key="index"
+                        class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">{{ item.name }}</div>
+                        </div>
+                        <span class="badge bg-primary rounded-pill">
+                            <input v-model="item.price" type="text" class="form-control price">
+                        </span>
+                        <button @click="removeItem(index)" type="button" class="btn btn-danger">X</button>
+                    </li>
+                    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">Total Amount</div>
+                        </div>
+                        <span class="badge bg-primary rounded-pill">{{ total }}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
+    </script>
+    <!-- Vue  -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                items: [{
+                        name: 'Rice',
+                        price: '15.00'
+                    },
+                    {
+                        name: 'Chicken',
+                        price: '110.50'
+                    },
+                    {
+                        name: 'Oil',
+                        price: '500.00'
+                    }
+                ],
+                newItem: ''
+            },
+            computed: {
+                total() {
+                    var total = 0
+                    this.items.forEach(item => {
+                        total += parseFloat(item.price)
+                    })
+                    return total
+                }
+            },
+            methods: {
+                addItem() {
+                    this.items.push({
+                        name: this.newItem,
+                        price: 0
+                    })
+                },
+                removeItem(index) {
+                    this.items.splice(index, 1)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
