@@ -30,7 +30,7 @@
                         <div class="ms-2 me-auto">
                             <div class="fw-bold">{{ item.name }}</div>
                         </div>
-                        <span class="badge bg-primary rounded-pill">
+                        <span class="badge rounded-pill">
                             <input v-model="item.price" type="text" class="form-control price">
                         </span>
                         <button @click="removeItem(index)" type="button" class="btn btn-danger">X</button>
@@ -39,7 +39,7 @@
                         <div class="ms-2 me-auto">
                             <div class="fw-bold">Total Amount</div>
                         </div>
-                        <span class="badge bg-primary rounded-pill">{{ total }}</span>
+                        <span class="badge rounded-pill">{{ total }}</span>
                     </li>
                 </ul>
             </div>
