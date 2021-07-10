@@ -1,4 +1,7 @@
 .price {
-        background-color: transparent;
+    background-color: transparent;
     border: none;
+}
+.badge {
+    color: #000;
 }
